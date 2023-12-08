@@ -1,0 +1,121 @@
+* {
+    padding: 0;
+    margin: 0;
+    color: rgb(31, 168, 31);
+
+}
+
+.container {
+    background-color: black;
+    margin: auto;
+    height: 90vh;
+    /* padding: 20px; */
+    /* height: 90vh; */
+    display: flex;
+    justify-content: center;
+    padding-top: 10vh;
+    text-align: center;
+    /* align-items: center;  */
+    background-image: url('../../public/background.jpg'); /* Replace 'your-background-image.jpg' with your actual image file */
+    background-size: cover;
+    background-position: center;
+
+}
+
+.content {
+    border: 1px solid black;
+    background-color: black;
+    border-radius: 20px;
+    max-height: 50%;
+    padding: 20px;
+    box-shadow: 5px red;
+    min-width: 30%;
+}
+
+.calc-btn {
+    border: 1px solid blue;
+    display: block;
+    margin-top: 20px !important;
+    padding: 8px;
+    background-color: black;
+    border-radius: 10px;
+    font-weight: bold;
+    color: chartreuse;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    margin: auto;
+    cursor: pointer;
+}
+/* .calc-btn:hover {
+    background-color: #2980b9;
+  } */
+
+.calc-btn:active {
+    box-sizing: border-box;
+    border: 1px solid blue;
+    background-color: #131415;
+  }
+.age-data {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    row-gap: 20px;
+    /* margin: auto;
+    text-align: center; */
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.input {
+    display: flex;
+    flex-direction: column;
+}
+
+.numbers-container {
+    border: 1px solid blue;
+    background-color: black;
+    border-radius: 100%;
+    padding: 8px;
+    min-height: 30px;
+    min-width: 30px;
+    color: rgb(31, 168, 31);
+    font-weight: bolder;
+    font-size: 25px;
+    margin: auto;
+    margin: 10px 20px;
+
+}
+
+/* --------------------Start common ------------------------ */
+.flex {
+    display: flex;
+}
+
+.flex-col {
+    flex-direction: column;
+}
+
+.flex-row {
+    flex-direction: row;
+}
+
+/* --------------------End common ------------------------ */
+
+@media screen and (max-width: 600px) {
+
+    .container {
+        height: 90vh;
+        width: 100vw;
+        background-color: black;
+    }
+
+    .content {
+        width: 80vw;
+        height: 100%;
+        /* background-color: rgb(210, 115, 115); */
+        background-color: black;
+    }
+
+
+}
