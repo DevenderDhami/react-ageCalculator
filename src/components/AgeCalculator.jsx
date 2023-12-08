@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import "./AgeCalculator.css"
 import ImageModal from './modal/Modal';
 import imageUrl from './../assets/images/images.jpeg'
+import zeroValue from './../assets/images/zeroValue.jpg'
+
 
 const AgeCalculator = () => {
   const [modalIsOpen, setModalIsOpen] = useState(true);
@@ -10,7 +12,7 @@ const AgeCalculator = () => {
     setModalIsOpen(false);
   };
 
-  const [birthdate, setBirthdate] = useState('');
+  const [birthdate, setBirthdate] = useState(new Date());
   const [age, setAge] = useState({
     years: null,
     months: null,
@@ -36,62 +38,70 @@ const AgeCalculator = () => {
 
     // Calculate days
     const days = Math.floor(remainingDaysMilliseconds / (24 * 60 * 60 * 1000));
-    setModalIsOpen(years<0&&months<0&&days<0?true:false)
+    setModalIsOpen(years <= 0 && months <= 0 && days <= 0 ? true : false)
     setAge({ years, months, days });
   };
 
+  const LessThanZero = age?.years < 0 && age?.months < 0 && age?.days < 0
+  const EqaulsToZero = age?.years == 0 && age?.months == 0 && age?.days == 0
   return (
     <div className='container'>
       <div className="content">
         <h2 style={{ marginBottom: "20px", borderBottom: " 1px solid blue", color: "yellow" }}>Age Calculator</h2>
-
         <div className="input">
           <label style={{ marginBottom: "20px" }} className='bold' htmlFor="birthdate">Enter your Birthdate:</label>
           <input
-          style={{width:"100%"}}
+            style={{ width: "100%" }}
             type="date"
             id="birthdate"
             value={birthdate}
-            placeholder='select your birth date'
             onChange={(e) => setBirthdate(e.target.value)}
           />
         </div>
         <button className="calc-btn" onClick={calculateAge}>Calculate Age</button>
 
-        {age?.years < 0 && age?.months < 0 && age?.days < 0 == true ? <ImageModal isOpen={modalIsOpen} closeModal={closeModal} >
+        {LessThanZero == true ? <ImageModal isOpen={modalIsOpen} closeModal={closeModal} >
           <img src={imageUrl} alt="Modal Content" style={{ width: '100%', height: 'auto' }} />
+        </ImageModal>
+          :
+          (EqaulsToZero == true ? <ImageModal isOpen={modalIsOpen} closeModal={closeModal} >
+            <img src={zeroValue} alt="Modal Content" style={{ width: '100%', height: 'auto' }} />
+          </ImageModal>
+            :
+            (
+              age.years !== null && (<div className='age-data'>
+                <div className='flex flex-col'>
+                  <span className='numbers-container'>
+                    {age.years}
+                  </span>
+                  <span>
+                    {age.years === 1 ? 'year' : 'years'}
+                  </span>
+                </div>
 
-        </ImageModal> :
-          age.years !== null && (<div className='age-data'>
-            <div className='flex flex-col'>
-              <span className='numbers-container'>
-                {age.years}
-              </span>
-              <span>
-                {age.years === 1 ? 'year' : 'years'}
-              </span>
-            </div>
+                <div className='flex flex-col'>
+                  <span className='numbers-container'>
+                    {age.months}
+                  </span>
+                  <span>
+                    {age.months === 1 ? 'month' : 'months'}
+                  </span>
+                </div>
 
-            <div className='flex flex-col'>
-              <span className='numbers-container'>
-                {age.months}
-              </span>
-              <span>
-                {age.months === 1 ? 'month' : 'months'}
-              </span>
-            </div>
+                <div className='flex flex-col'>
+                  <span className='numbers-container'>
+                    {age.days}
+                  </span>
+                  <span>
+                    {age.days === 1 ? 'day' : 'days'}
+                  </span>
+                </div>
 
-            <div className='flex flex-col'>
-              <span className='numbers-container'>
-                {age.days}
-              </span>
-              <span>
-                {age.days === 1 ? 'day' : 'days'}
-              </span>
-            </div>
-
-          </div>
-          )}
+              </div>
+              )
+            )
+          )
+        }
 
       </div>
 

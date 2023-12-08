@@ -5,14 +5,15 @@ import Modal from 'react-modal';
 import image from '../../assets/images/images.jpeg'
 const customStyles = {
   content: {
-    top: '50%',
+    top: '40%',
     left: '50%',
     right: 'auto',
     bottom: 'auto',
     marginRight: '-50%',
     // height:"50vh",
-    width:"30vw",
+    minWidth:"300px",
     transform: 'translate(-50%, -50%)',
+    // backgroundColor:""
   },
 };
 Modal.setAppElement('#root'); // Set the root element for accessibility
